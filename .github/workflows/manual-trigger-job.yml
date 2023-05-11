@@ -7,8 +7,9 @@ on:
      inputs:
       username:
         description: 'UserName you want echo out...'
-        required: false
+        required: true
         type: string
+        default: DeanDefault
 
 jobs:
   Explore-GitHub-Actions:
