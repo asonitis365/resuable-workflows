@@ -1,14 +1,22 @@
 name: Github Actions Input Demo
 
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-
 on:
   workflow_call:
+   inputs:
+    username:
+      required: true
+      type: string
+      default: 'Annie'
+
+
 
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
+  Demo:
+    name: 'Testing Greeting Users'
+    runs-on: self-hosted
+
     steps:
-      - name: Print the input name to STDOUT
-        run: echo The username is ${{ inputs.username }}
-        shell: bash
+    - name: Greet User
+      shell: pwsh
+      run: |
+        write-host "My Name is:  ${{ inputs.username }}"
