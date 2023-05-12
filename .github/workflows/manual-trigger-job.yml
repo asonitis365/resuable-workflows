@@ -3,20 +3,36 @@ name: Github Actions Input Demo
 on:
   workflow_call:
    inputs:
-    username:
-      required: true
-      type: string
-      default: 'Annie'
-
+    Kind:
+        description: ''
+        required: true
+        type: string
+    ResourceName:
+        description: ''
+        type: string
+    ResourceGroupName:
+        description: ''
+        type: string
+    BicepFile:
+       description: ''
+       type: string
+    ParamFile:
+        description: ''
+        type: string
+    DeployInfrastructure:
+        description: ''
+        type: boolean
 
 
 jobs:
-  Demo:
-    name: 'Testing Greeting Users'
+  release:
+    name: '${{ inputs.Kind }} Release'
     runs-on: self-hosted
 
     steps:
     - name: Greet User
       shell: pwsh
       run: |
-        write-host "My Name is:  ${{ inputs.username }}"
+        write-host "Kind:  ${{ inputs.Kind }}"
+        write-host "ResourceName:  ${{ inputs.ResourceName }}"
+        write-host "ResourceGroupName:  ${{ inputs.ResourceGroupName }}"
