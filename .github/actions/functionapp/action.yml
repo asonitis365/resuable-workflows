@@ -1,0 +1,29 @@
+name: FunctionApp
+description: ''
+
+inputs:
+  BicepFile:
+    required: false
+    description: ''
+  ParamFile:
+    required: false
+    description: ''
+  ResourceName:
+    required: true
+    description: ''
+  ResourceGroupName:
+    required: true
+    description: ''
+  DeployInfrastructure:
+    required: true
+    description: ''
+
+runs: 
+  using: composite
+  steps:
+    - name: FunctionApp
+      shell: pwsh
+      run: |
+        echo "ResourceName=${{ inputs.ResourceName }}"
+        echo "ResourceGroupName=${{ inputs.ResourceGroupName }}"
+        echo "DeployInfrastructure=${{ inputs.DeployInfrastructure }}"

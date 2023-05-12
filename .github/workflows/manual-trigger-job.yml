@@ -30,9 +30,10 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    - name: Greet User
-      shell: pwsh
-      run: |
-        write-host "Kind:  ${{ inputs.Kind }}"
-        write-host "ResourceName:  ${{ inputs.ResourceName }}"
-        write-host "ResourceGroupName:  ${{ inputs.ResourceGroupName }}"
+    - name: FunctionApp_Testing
+      if: ${{ inputs.Kind }} == FunctionApp 
+      uses: ./actions/functionapp
+      with:
+        ResourceName: ${{inputs.ResourceName}}
+        ResourceGroupName: ${{inputs.ResourceGroupName}}
+        DeployInfrastructure: ${{inputs.DeployInfrastructure}}
